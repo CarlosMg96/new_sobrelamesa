@@ -15,8 +15,8 @@ app.use(cors({
   origin: '*'
 }));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
+app.use('/api/', authRoutes);
+app.use('/api/', productRoutes);
 
 // Manejador de errores para rutas no encontradas
 app.use((req, res, next) => {
