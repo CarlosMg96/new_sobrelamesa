@@ -9,6 +9,10 @@ const createConnection = async () => {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
+      namedPlaceholders: true,  // Añade esta línea
+      supportBigNumbers: true,
+      bigNumberStrings: true,
+      dateStrings: true
     });
     return connection;
   } catch (err) {

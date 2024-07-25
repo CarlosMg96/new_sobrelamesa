@@ -1,4 +1,4 @@
-const { createConnection } = require('../../../config/conection');
+const { createConnection } = require('../../config/conection');
 
 exports.createSubcategory = async (req, res) => {
     const { subcategory, category_id, status } = req.body;
@@ -9,7 +9,7 @@ exports.createSubcategory = async (req, res) => {
 
     try {
         const connection = await createConnection();
-        const query = 'INSERT INTO Subcategorys (subcategory, category_id, status) VALUES (?, ?, ?)';
+        const query = 'INSERT INTO subcategories (subcategory, category_id, status) VALUES (?, ?, ?)';
         await connection.execute(query, [subcategory, category_id, status]);
         await connection.end();
         res.status(201).send({ message: 'Subcategory created successfully' });
@@ -21,7 +21,7 @@ exports.createSubcategory = async (req, res) => {
 exports.getSubcategorys = async (req, res) => {
     try {
         const connection = await createConnection();
-        const [results] = await connection.execute('SELECT * FROM Subcategorys');
+        const [results] = await connection.execute('SELECT * FROM subcategories');
         await connection.end();
         res.status(200).send(results);
     } catch (err) {

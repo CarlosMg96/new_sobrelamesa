@@ -1,4 +1,4 @@
-const { createConnection } = require('../../../config/conection');
+const { createConnection } = require('../../config/conection');
 
 exports.createHistoryProduct = async (req, res) => {
     const { product_id, stock, rental_price, replacement_cost, cost_excluding_taxes, cost, security_deposit } = req.body;
@@ -9,7 +9,7 @@ exports.createHistoryProduct = async (req, res) => {
 
     try {
         const connection = await createConnection();
-        const query = 'INSERT INTO HistoryProducts (product_id, stock, rental_price, replacement_cost, cost_excluding_taxes, cost, security_deposit) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO history_products (product_id, stock, rental_price, replacement_cost, cost_excluding_taxes, cost, security_deposit) VALUES (?, ?, ?, ?, ?, ?, ?)';
         await connection.execute(query, [product_id, stock, rental_price, replacement_cost, cost_excluding_taxes, cost, security_deposit]);
         await connection.end();
         res.status(201).send({ message: 'History Product created successfully' });
@@ -21,7 +21,7 @@ exports.createHistoryProduct = async (req, res) => {
 exports.getHistoryProducts = async (req, res) => {
     try {
         const connection = await createConnection();
-        const [results] = await connection.execute('SELECT * FROM HistoryProducts');
+        const [results] = await connection.execute('SELECT * FROM history_products');
         await connection.end();
         res.status(200).send(results);
     } catch (err) {

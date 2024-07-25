@@ -1,4 +1,4 @@
-const { createConnection } = require('../../../config/conection');
+const { createConnection } = require('../../config/conection');
 
 exports.createCategory = async (req, res) => {
     const { category, classification, status } = req.body;
@@ -9,7 +9,7 @@ exports.createCategory = async (req, res) => {
 
     try {
         const connection = await createConnection();
-        const query = 'INSERT INTO Categories (category, classification, status) VALUES (?, ?, ?)';
+        const query = 'INSERT INTO categories (category, classification, status) VALUES (?, ?, ?)';
         await connection.execute(query, [category, classification, status]);
         await connection.end();
         res.status(201).send({ message: 'Category created successfully' });

@@ -1,13 +1,28 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Importa el middleware CORS
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/products');
 const { createConnection } = require('./config/conection');
 const { createDatabaseIfNotExists } = require('./config/init_config');
 
 const app = express();
+
 app.use(bodyParser.json());
-app.use('/auth', authRoutes);
+
+app.use(cors({
+  origin: '*'
+}));
+
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
+
+// Manejador de errores para rutas no encontradas
+app.use((req, res, next) => {
+  res.status(404).send({ message: 'Route not found' });
+});
+
 
 const PORT = process.env.PORT || 3000;
 
