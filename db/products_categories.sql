@@ -1,38 +1,39 @@
-CREATE TABLE Categories (
+CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    category VARCHAR(255) NOT NULL,
-    classification VARCHAR(255) NOT NULL,
+    category VARCHAR(70) NOT NULL,
+    classification CHAR NOT NULL,
     status TINYINT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Subcategorys (
+CREATE TABLE subcategories (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    subcategory VARCHAR(255) NOT NULL,
+    subcategory VARCHAR(70) NOT NULL,
     category_id INT NOT NULL,
-    status TINYINT NOT NULL,
+    status TINYINT NOT NULL ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES Categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-CREATE TABLE Products (
+CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    product VARCHAR(255) NOT NULL,
+    product VARCHAR(100) NOT NULL,
     subcategory_id INT NOT NULL,
-    key VARCHAR(255) NOT NULL,
+    product_key VARCHAR(15) NOT NULL,
     dimensions VARCHAR(255),
     image VARCHAR(255),
     maintenance_days INT,
     status TINYINT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (subcategory_id) REFERENCES Subcategorys(id)
+    FOREIGN KEY (subcategory_id) REFERENCES subcategories(id)
 );
 
-CREATE TABLE HistoryProducts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+
+CREATE TABLE history_products (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
     stock INT,
     rental_price DECIMAL(10, 2),
@@ -42,5 +43,5 @@ CREATE TABLE HistoryProducts (
     security_deposit DECIMAL(10, 2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES Products(id)
+    FOREIGN KEY (product_id) REFERENCES products(id)
 );

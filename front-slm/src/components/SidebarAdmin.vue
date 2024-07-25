@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { closeSesion } from "@/kernel/utils"
 export default {
   name: 'SidebarAdmin',
   props: {
@@ -33,12 +34,18 @@ export default {
       menuItems: [
         {label: 'Usuarios', icon: 'pi pi-fw pi-users', route: 'users'},
         {label: 'Eventos', icon: 'pi pi-fw pi-calendar', route: 'calendar'},
-        {label: 'Anuncios', icon: 'pi pi-fw pi-megaphone'},
-        {label: 'Grupos', icon: 'pi pi-fw pi-sitemap'},
-        {label: 'Cerrar sesión', icon: 'pi pi-fw pi-power-off'},
+        {label: 'Productos', icon: 'pi pi-fw pi-box', route: 'products'},
+        {label: 'Inventario', icon: 'pi pi-fw pi-truck'},
+        {label: 'Cerrar sesión', icon: 'pi pi-fw pi-power-off', route: 'login', onClick: this.logout},
       ]
     }
+  },
+  methods: {
+  async logout() {
+    await closeSesion();
   }
+}
+
 }
 </script>
 

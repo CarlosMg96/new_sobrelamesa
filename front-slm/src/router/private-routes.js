@@ -1,4 +1,6 @@
 import adminRoutes from "@/router/admin-routes";
+import masterRoutes from "@/router/master-routes";
+
 export default [
     {
         path: '',
@@ -11,6 +13,11 @@ export default [
                 route.meta.requireAuth = false
                 return {...route}
             }),
+            ...masterRoutes.map(route => {
+                route.meta.requireAuth = false
+                return {...route}
+            }),
         ]
+
     }
 ]

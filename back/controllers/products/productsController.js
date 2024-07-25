@@ -23,19 +23,13 @@ exports.getProducts = async (req, res) => {
     try {
         connection = await createConnection();
        
-        const page = Math.max(0, parseInt(req.query.page) || 0);
-        const size = Math.max(1, parseInt(req.query.size) || 25);
+        const page = parseInt(req.query.page) || 0;
+        const size = parseInt(req.query.size) || 25;
         const offset = page * size;
         
-        console.log('Page:', page, 'Size:', size, 'Offset:', offset);  // Para debugging
-        console.log('Offset type:', typeof offset, 'Size type:', typeof size);
-        console.log('Offset value:', offset, 'Size value:', size);
-
-        // Cambio en la consulta SQL
-        const [results] = await connection.execute(
-            'SELECT * FROM products LIMIT ? OFFSET ?',
-            [size, offset]
-        );
+        // Construir la consulta manualmente
+        const query = `SELECT * FROM products LIMIT ${size} OFFSET ${offset}`;
+        const [results] = await connection.query(query);
        
         const [totalResults] = await connection.execute('SELECT COUNT(*) as count FROM products');
         const totalElements = totalResults[0].count;

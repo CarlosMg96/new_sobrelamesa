@@ -11,8 +11,8 @@
       :autoZIndex="true"
   >
     <div class="user-info">
-      <Avatar :label="userData.name.charAt(0)" shape="circle" size="xlarge" class="mb-2"/>
-      <h3>{{ userData.name }}</h3>
+      <Avatar :label="userData.fullname.charAt(0)" shape="circle" size="xlarge" class="mb-2"/>
+      <h3>{{ userData.fullname }}</h3>
     </div>
     <div class="user-data">
       <b-row>
@@ -25,7 +25,7 @@
             </div>
           </div>
         </b-col>
-        <b-col cols="12" lg="6" md="4" sm="12">
+        <!-- <b-col cols="12" lg="6" md="4" sm="12">
           <div class="info-item">
             <i class="pi pi-phone"></i>
             <div class="info-text">
@@ -33,7 +33,7 @@
               <p>7775673712</p>
             </div>
           </div>
-        </b-col>
+        </b-col> -->
       </b-row>
     </div>
     <template #footer>
@@ -62,7 +62,7 @@ export default {
   data(){
     return {
       userData: {
-        name: '',
+        fullname: '',
         email: '',
         phone: ''
       }
