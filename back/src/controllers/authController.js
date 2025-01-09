@@ -26,15 +26,15 @@ exports.register = async (req, res) => {
         await connection.execute(query, [fullname, email, hashedPassword, hashedPwd, role]);
         await connection.end();
 
-        res.status(201).json({
-            status: 201,
+        res.status(200).json({
+            status: 200,
             message: 'User registered successfully',
             data: []
         });
     } catch (err) {
         if (err.code === 'ER_DUP_ENTRY') {
-            return res.status(409).json({
-                status: 409,
+            return res.status(400).json({
+                status: 400,
                 message: 'Email already exists',
                 data: []
             });
@@ -89,8 +89,8 @@ exports.login = async (req, res) => {
 
         const user = results[0];
         const passwordIsValid = bcrypt.compareSync(password, user.password);
-        if (!passwordIsValid) return res.status(401).json({
-            status: 401,
+        if (!passwordIsValid) return res.status(400).json({
+            status: 400,
             message: 'Invalid password',
             data: []
         });

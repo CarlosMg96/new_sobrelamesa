@@ -8,19 +8,19 @@ const verifyToken = require('../middleware/verifyToken');
 const checkRole = require('../middleware/checkRole');
 
 // Rutas Productos
-router.get('/products/get_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS', 'ALMACEN']), productsController.getProducts);
-router.post('/products/add_product', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS']), productsController.createProduct);
+router.get('/products/get_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES', 'WAREHOUSE']), productsController.getProducts);
+router.post('/products/add_product', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES']), productsController.createProduct);
 
 // Rutas Categorias
-router.post('/products/get_categories', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS', 'ALMACEN']), categoriesController.getCategories);
-router.post('/products/add_category', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS']), categoriesController.createCategory);
+router.get('/products/get_categories', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES', 'WAREHOUSE']), categoriesController.getCategories);
+router.post('/products/add_category', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES']), categoriesController.createCategory);
 
 // Rutas Subcategorias
-router.post('/products/get_subcategories', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS', 'ALMACEN']), subcategoriesController.getSubcategorys);
-router.post('/products/add_subcategory', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS']), subcategoriesController.createSubcategory);
+router.get('/products/get_subcategories', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES', 'WAREHOUSE']), subcategoriesController.getSubcategorys);
+router.post('/products/add_subcategory', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES']), subcategoriesController.createSubcategory);
 
 // Rutas Historial productos
-router.post('/products/get_historial_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS', 'ALMACEN']), historyProductsController.getHistoryProducts);
-router.post('/products/add_historial_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'VENTAS', 'ALMACEN']), historyProductsController.createHistoryProduct);
+router.get('/products/get_historial_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES', 'WAREHOUSE']), historyProductsController.getHistoryProducts);
+router.post('/products/add_historial_products', verifyToken, checkRole(['MASTER', 'ADMIN', 'SALES', 'WAREHOUSE']), historyProductsController.createHistoryProduct);
 
 module.exports = router;

@@ -4,12 +4,12 @@ const mysql = require('mysql2/promise');
 // Función para crear la conexión a la base de datos
 const createConnection = async () => {
   try {
-    console.log('Attempting to connect with:', {
-      host: process.env.MYSQL_HOST,
-      user: process.env.MYSQL_USER,
-      password: process.env.MYSQL_PASSWORD,
-      database: process.env.MYSQL_DB
-    });
+    // console.log('Attempting to connect with:', {
+    //   host: process.env.MYSQL_HOST,
+    //   user: process.env.MYSQL_USER,
+    //   password: process.env.MYSQL_PASSWORD,
+    //   database: process.env.MYSQL_DB
+    // });
     
     const connection = await mysql.createConnection({
       host: process.env.MYSQL_HOST,

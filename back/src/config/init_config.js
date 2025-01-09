@@ -25,7 +25,7 @@ const createTableUsers = async (connection) => {
       password VARCHAR(100) NOT NULL,
       pwd VARCHAR(100) NOT NULL,
       remember_token VARCHAR(100),
-      role ENUM('MASTER', 'ADMIN', 'ALMACEN', 'VENTAS') NOT NULL,
+      role ENUM('MASTER', 'ADMIN', 'SALES', 'WAREHOUSE') NOT NULL,
       status INT DEFAULT 1,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
